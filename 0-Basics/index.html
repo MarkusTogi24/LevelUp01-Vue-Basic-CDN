@@ -1,0 +1,28 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <script src="https://unpkg.com/vue@3.0.2"></script>
+    <title>Using Vue CDN</title>
+</head>
+<body>
+    <div id="app">
+        <img src="https://server-tubes-pam-app.herokuapp.com/images/BolaBiru.png" style="height: 200px; width: 200px;" alt="">
+        <h1>{{ name }}</h1>
+        <h4>{{ description }}</h4>
+        <h2>Rp. {{ price }}.000,00;-</h2>
+        <div style="display: flex; margin-bottom: 10px;">
+            <button @click="add" style="margin-right: 10px; width: 30px; text-align: center;">+</button>
+            <p style="margin-right: 10px;">{{ orderCount }}</p>
+            <button @click="sub" style="margin-right: 10px; width: 30px; text-align: center;">-</button>
+        </div>
+        <button @click="changeName('Masih Bola Biru')">Change Name</button>
+        <h1>Total price : Rp. {{ price * orderCount }}000</h1>
+    </div>
+    
+
+    <script src="app.js"></script>
+</body>
+</html>

@@ -1,0 +1,50 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <script src="https://unpkg.com/vue@3.0.2"></script>
+    <title>Using Vue CDN</title>
+    <style>
+        .productCard{
+            margin: 10px; width: 300px; padding: 10px; display: flex; flex-direction: column; gap: 10px; border: 1px green solid; border-radius: 5px; background-color: lightgray;
+        }
+        .buy{
+            background-color: white;
+        }
+    </style>
+</head>
+<body>
+    <div id="app">
+        <h1>Dynamic Class (CSS)</h1>
+        <p>Class changing conditionally</p>
+        <button @click="toggleShowData">
+            <span v-show="!showData">Show Products</span>
+            <span v-show="showData">Hide Products</span>
+        </button>
+        <div v-show="showData" style="border: 1px green solid; background-color: lightgreen; border-radius: 5px; margin: 15px; padding: 15px; display: flex; gap: 15px;">
+            <div v-for="(product, index) in data" class="productCard" :class="{ buy:(product.count>0) }" :key="index">
+                <img :src="product.image" alt="" style="width: 150px; height: 150px; margin: auto;">
+                <h3 style="margin: 0; text-align: center;">{{ product.name }}</h3>
+                <h5 style="margin: 0;">{{ product.description }}</h5>
+                <h3 style="margin: 0;">Rp.{{ product.price }}</h3>
+                <div style="display: flex; justify-content: center;">
+                    <button @click="add(product)" style="padding: 0 10px;">+</button>
+                    <h3 style="margin: 0 10px;">{{ product.count }}</h3>
+                    <button @click="sub(product)" style="padding: 0 10px;">-</button>
+                </div>
+                <h3 style="margin: 0;">Subtotal : Rp.{{ product.price * product.count }}</h3>
+            </div>
+        </div>
+        <div v-show="selectedProducts.length>0">
+            <h4>Produk dipilih:</h4>
+            <div v-for="(product, index) in selectedProducts">
+                <h5 style="margin: 0;">{{ product.name }} >> {{ product.count }} X {{ product.price }} = {{ product.subtotal }} </h5>
+            </div>
+        </div>
+        <h2>Total : Rp.{{ total }}</h2>
+    </div>
+    <script src="app.js"></script>
+</body>
+</html>
